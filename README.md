@@ -15,3 +15,7 @@ GODADDY_API_SECRET=your-production-secret
 API_URL='https://api.godaddy.com'
 ```
 
+Install required packages
+```
+pip install -r requirements.txt
+```
