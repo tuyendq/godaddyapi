@@ -1,2 +1,1 @@
-# godaddyapi
-Godaddy API
+# Godaddy API
