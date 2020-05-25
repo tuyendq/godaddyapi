@@ -1,5 +1,15 @@
 # Godaddy API
 
+## Clone
+```
+git clone https://github.com/tuyendq/godaddyapi.git
+cd godaddyapi
+```
+## Create virtual environment
+```
+python -m venv venv
+source venv/bin/activate
+```
 
 ## Environment variables
 ### Create .env file at root folder
