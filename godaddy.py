@@ -87,8 +87,9 @@ def main():
     # Get domain info
     # get_domain_info('ipractice.site')
     # Get dns record
-    get_record_info('ipractice.site','A','adfs')
-    update_record_info('ipractice.site','A','129', current_public_ip)
+    get_record_info('ipractice.site','A','129')
+    if current_public_ip != None:
+        update_record_info('ipractice.site','A','129', current_public_ip)
 
 if __name__ == "__main__":
     main()
