@@ -2,7 +2,7 @@
 
 
 ## Environment variables
-Create .env file at root folder
+### Create .env file at root folder
 ```
 # OTE https://api.ote-godaddy.com
 # GODADDY_API_KEY=your-ote-key
@@ -15,7 +15,7 @@ GODADDY_API_SECRET=your-production-secret
 API_URL='https://api.godaddy.com'
 ```
 
-Install required packages
+### Install required packages
 ```
 pip install -r requirements.txt
 ```
