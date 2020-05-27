@@ -5,7 +5,7 @@ from decouple import config
 # Common environment varibles
 API_KEY = config('GODADDY_API_KEY')
 API_SECRET = config('GODADDY_API_SECRET')
-API_URL = config('API_URL')
+API_URL_BASE = config('API_URL_BASE')
 
 def get_public_ip():
     """Get public IP Address using api.ipify.org"""
@@ -19,7 +19,7 @@ def get_public_ip():
 
 def get_domain_info(domain_name):
     """Get info of a specific domain"""
-    api_url = API_URL + '/v1/domains/' + domain_name
+    api_url = API_URL_BASE + '/v1/domains/' + domain_name
     headers = {'Content-Type': 'application/json',
                 'Authorization': 'sso-key ' + API_KEY + ':' + API_SECRET}
     try:
@@ -40,7 +40,7 @@ def get_record_info(domain_name, record_type, record_name):
     optionally with the specified Type and/or Name
     url: /v1/domains/{domain}/records/{type}/{name}
     """
-    api_url = API_URL + '/v1/domains/' + domain_name + '/records/' + record_type \
+    api_url = API_URL_BASE + '/v1/domains/' + domain_name + '/records/' + record_type \
                         + '/' + record_name
     headers = {'Content-Type': 'application/json',
                 'Authorization': 'sso-key ' + API_KEY + ':' + API_SECRET}
@@ -62,7 +62,7 @@ def update_record_info(domain_name, record_type, record_name, ip_address):
     /v1/domains/{domain}/records/{type}/{name}
     Replace all DNS Records for the specified Domain with the specified Type and Name
     """
-    api_url = API_URL + '/v1/domains/' + domain_name + '/records/' + record_type \
+    api_url = API_URL_BASE + '/v1/domains/' + domain_name + '/records/' + record_type \
                         + '/' + record_name
     headers = {'Content-Type': 'application/json',
                 'Authorization': 'sso-key ' + API_KEY + ':' + API_SECRET}
