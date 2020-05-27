@@ -7,8 +7,8 @@ API_KEY = config('GODADDY_API_KEY')
 API_SECRET = config('GODADDY_API_SECRET')
 API_URL = config('API_URL')
 
-def check_public_ip():
-    """Check public IP Address using api.ipify.org"""
+def get_public_ip():
+    """Get public IP Address using api.ipify.org"""
     try:
         ip = requests.get('https://api.ipify.org').text
         print(ip)
@@ -83,7 +83,7 @@ def update_record_info(domain_name, record_type, record_name, ip_address):
 
 def main():
     # Check public ip address
-    current_public_ip = check_public_ip()
+    current_public_ip = get_public_ip()
     # Get domain info
     # get_domain_info('ipractice.site')
     # Get dns record
