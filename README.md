@@ -4,6 +4,16 @@
 Create or update IP Address of an A DNS record on Godaddy
 ```
 python3 godaddyapi.py 'domain_name' 'record_name'
+
+## Clone
+```
+git clone https://github.com/tuyendq/godaddyapi.git
+cd godaddyapi
+```
+## Create virtual environment
+```
+python3 -m venv venv
+source venv/bin/activate
 ```
 
 ## Environment variables
