@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+import sys 
 import requests
 import json
 from decouple import config
@@ -58,9 +60,17 @@ def get_record_info(domain_name, record_type, record_name):
         return None
 
 def update_record_info(domain_name, record_type, record_name, ip_address):
-    """Update IP Address of a specific A DNS record
+    """
+    Update IP Address of a specific A DNS record
     /v1/domains/{domain}/records/{type}/{name}
     Replace all DNS Records for the specified Domain with the specified Type and Name
+    domain_name: string
+        Domain name, e.g: practicehabits.net
+    record_type: string
+        Type of record, e.g: A, CNAME
+    record_name: string
+        E.g: www, dev
+    ip_address: string
     """
     api_url = API_URL_BASE + '/v1/domains/' + domain_name + '/records/' + record_type \
                         + '/' + record_name
@@ -82,14 +92,39 @@ def update_record_info(domain_name, record_type, record_name, ip_address):
         return None
 
 def main():
+    # Checl arguments
+    # print("Arguments list: " + str(sys.argv))
+    # print("Number of arguments: " + str(len(sys.argv)))
+    # for arg in sys.argv:
+    #    print(arg)
+
+    if len(sys.argv) != 3:
+        print("Usage:\nargv[0] 'domain_name' 'A_DNS_record_name'")
+        sys.exit("Check usage syntax for number of arguments.")
+    else:
+        domain_name = sys.argv[1]
+        record_name = sys.argv[2]
+        print(domain_name, ':', record_name)
+
     # Check public ip address
     current_public_ip = get_public_ip()
+    
     # Get domain info
-    # get_domain_info('ipractice.site')
+    # domain_info = get_domain_info('ipractice.site')
+    # domain_info = get_domain_info(domain_name)
+    # print(domain_info)
+
     # Get dns record
-    get_record_info('ipractice.site','A','129')
-    if current_public_ip != None:
-        update_record_info('ipractice.site','A','129', current_public_ip)
+    # get_record_info('ipractice.site','A','129')
+    record_info = get_record_info(domain_name,'A',record_name)
+    if record_info != None:
+        print(record_info)
+        if record_info != []:
+            record_ip_address = record_info[0]['data']
+        else:
+            record_ip_address = ''
+    if current_public_ip != None and record_ip_address != current_public_ip:
+        update_record_info(domain_name,'A',record_name, current_public_ip)
 
 if __name__ == "__main__":
     main()
